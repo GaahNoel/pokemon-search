@@ -16,12 +16,6 @@ export const Container = styled(View)`
     justify-content: center;
 `;
 
-export const FinalMenu = styled(View)`
-    flex-direction: row;
-    justify-content:space-between;
-    background: #E50000;
-`; 
-
 export const PrincipalText = styled(Text)`
     background-color: black;
     border-radius: 10px;
@@ -44,13 +38,5 @@ export const ButtonText = styled(Text)`
     color: white;
     margin-left: 10px;
     font-size: 30px;
-`
-export const EntypoMenuIcon = styled(EntypoIcon)`
-    color: white;
-    margin-right: 10px;
-`
-
-export const CommunityMenuIcon = styled(CommunityIcon)`
-    color: white;
-    margin-left: 10px;
+    width: 120px;
 `

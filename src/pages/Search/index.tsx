@@ -1,14 +1,22 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
+import { useSearch } from '../../hooks/SearchContext';
+import Footer from '../../components/Footer';
 
 import * as S from './styles';
 
 
 const Search: React.FC = () => {
+  const { searchParam } = useSearch();
+
   return (
-    <S.Container>
-      <S.PrincipalText>Página de Pesquisa 🚀</S.PrincipalText>
-    </S.Container>
+    <>
+      <S.Container>
+        <TextInput></TextInput>
+        <Text>{searchParam} 🚀</Text>
+      </S.Container>
+      <Footer/>
+    </>
   );
 }
 
