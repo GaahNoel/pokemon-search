@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, Image } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler';
 
 export const Wrapper = styled(View)`
@@ -12,7 +12,7 @@ export const Wrapper = styled(View)`
 export const Container = styled(View)`
     align-items: center;
     justify-content: space-between;
-    flex-direction: row;
+    flex-direction: column;
 `; 
 export const PrincipalText = styled(Text)`
     background-color: blue;
@@ -40,4 +40,45 @@ export const SearchButton = styled(TouchableOpacity)`
 export const ButtonText = styled(Text)`
     color: white;
     font-weight: bold;
+`;
+export const FindInfoContainer = styled(TouchableOpacity)`
+    background-color: white;
+    padding: 10px 10px;
+    border-radius: 10px;
+    width: 250px;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+`;
+
+export const FindImageContainer = styled(View)`
+    width: 100%;
+    max-width: 100px;
+    border-radius: 5px;
+`;
+export const FindImage = styled(Image)`
+    width: 50px;
+    height: 50px;
+`;
+export const FindText = styled(Text)`
+    font-size: 15px;
+`;
+
+export const ErrorContainer = styled(View)`
+    width: 100%;
+    background-color: red;
+    padding: 20px 10px;
+    border-radius: 10px;
+    max-width: 600px;
+`;
+
+export const ErrorText = styled(Text)`
+`;
+
+export const ResponseContainer = styled(View)`
+    flex-direction:row;
+`;
+
+export const SearchContainer = styled(View)`
+    flex-direction:row;
 `;
