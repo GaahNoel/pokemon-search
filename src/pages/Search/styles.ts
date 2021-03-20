@@ -65,14 +65,19 @@ export const FindText = styled(Text)`
 `;
 
 export const ErrorContainer = styled(View)`
-    width: 100%;
+    max-width: 100%;
     background-color: red;
     padding: 20px 10px;
     border-radius: 10px;
     max-width: 600px;
+    width: 250px;
+    margin: 10px;
 `;
 
 export const ErrorText = styled(Text)`
+    color: white;
+    text-align: center;
+    font-weight: bold;
 `;
 
 export const ResponseContainer = styled(View)`

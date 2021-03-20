@@ -1,14 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { useSearch } from '../../hooks/SearchContext';
 import Footer from '../../components/Footer';
-import { Text,  SafeAreaView  } from 'react-native'
+import { Text,  SafeAreaView  } from 'react-native';
 import * as S from './styles';
 import axios from 'axios'
+import { useNavigation } from '@react-navigation/core';
 
 
 type Info = {
-  name?: string;
-  image?: string;
+  name: string;
+  image: string;
 }
 type ResponseInfo = {
   data:{
@@ -23,29 +24,77 @@ type Sprite = {
 
 
 const Search: React.FC = () => {
-  const { searchParam } = useSearch();
+  const { searchParam, changeSearchResult } = useSearch();
+  
   const [ searchParams, setSearchParam ] = useState('');
-  const [ info, setInfo ] = useState<Info>();
+  const [ info, setInfo ] = useState({} as Info);
+  const [ fullData, setFullData ] = useState({} as any);
+
+  const [ findResult, setFindResult ] = useState(false);
   const [ error, setError ] = useState('');
+  const navigator = useNavigation();
 
   const handleSearch = async () => {
     const splitedParams = searchParams.toLowerCase().split(' ');
     const rejoinedParams = splitedParams.join('-');
+    setFindResult(false);
 
     try {
-      const { data: { name, sprites} } = await axios.get(`https://pokeapi.co/api/v2/${searchParam}/${rejoinedParams}`) as ResponseInfo;
+      const { data } = await axios.get(`https://pokeapi.co/api/v2/${searchParam}/${rejoinedParams}`) as any;
+      const { name , sprites } = data;
+      
       setError('');
 
       if(searchParam === 'pokemon')
         setInfo({ name , image: String(sprites.front_default) });
       else
         setInfo({ name , image: String(sprites.default) });
-      
-        console.log(sprites.front_default);
+
+        setFullData(data);
+        setFindResult(true);
     } catch (err) {
-        setError('Não encontrado');
+        setError('Não encontrado !');
     }
   }
+
+  const handleResult = () => {
+    console.log(searchParam);
+
+    if(searchParam === 'pokemon') {
+      const {
+        name,
+        sprites,
+        stats,
+        height,
+        weight,
+        types
+      } = fullData;
+      
+      changeSearchResult({
+        name,
+        sprites,
+        stats,
+        height,
+        weight,
+        types
+      });
+    }
+    else {
+      const {
+        name,
+        sprites,
+        effect_entries: effectEntries,
+      } = fullData;
+
+      changeSearchResult({
+        name,
+        sprites,
+        effectEntries,
+      });
+    }
+
+    navigator.navigate('Result');
+  } 
 
   return (
     <>
@@ -60,8 +109,8 @@ const Search: React.FC = () => {
 
 
           <S.ResponseContainer>
-          { info && (
-            <S.FindInfoContainer>
+          { findResult && (
+            <S.FindInfoContainer onPress={handleResult}>
               <S.FindImage source={{
                 uri: String(info?.image)
               }}>
