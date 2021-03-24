@@ -5,6 +5,7 @@ import { Text,  SafeAreaView  } from 'react-native';
 import * as S from './styles';
 import axios from 'axios'
 import { useNavigation } from '@react-navigation/core';
+import { ActivityIndicator } from 'react-native';
 
 
 type Info = {
@@ -24,7 +25,8 @@ type Sprite = {
 
 
 const Search: React.FC = () => {
-  const { searchParam, changeSearchResult } = useSearch();
+  const { searchParam, changePokemonSearchResult, changeItemSearchResult } = useSearch();
+  const [ searching, setSearching ] = useState(false);
   
   const [ searchParams, setSearchParam ] = useState('');
   const [ info, setInfo ] = useState({} as Info);
@@ -38,6 +40,7 @@ const Search: React.FC = () => {
     const splitedParams = searchParams.toLowerCase().split(' ');
     const rejoinedParams = splitedParams.join('-');
     setFindResult(false);
+    setSearching(true);
 
     try {
       const { data } = await axios.get(`https://pokeapi.co/api/v2/${searchParam}/${rejoinedParams}`) as any;
@@ -52,13 +55,14 @@ const Search: React.FC = () => {
 
         setFullData(data);
         setFindResult(true);
+        setSearching(false);
     } catch (err) {
         setError('Não encontrado !');
+        setSearching(false);
     }
   }
 
   const handleResult = () => {
-    console.log(searchParam);
 
     if(searchParam === 'pokemon') {
       const {
@@ -70,7 +74,7 @@ const Search: React.FC = () => {
         types
       } = fullData;
       
-      changeSearchResult({
+      changePokemonSearchResult({
         name,
         sprites,
         stats,
@@ -78,22 +82,22 @@ const Search: React.FC = () => {
         weight,
         types
       });
+      navigator.navigate('PokemonResult');
     }
     else {
       const {
         name,
         sprites,
-        effect_entries: effectEntries,
+        effect_entries,
       } = fullData;
 
-      changeSearchResult({
+      changeItemSearchResult({
         name,
         sprites,
-        effectEntries,
+        effect_entries,
       });
+      navigator.navigate('ItemResult');
     }
-
-    navigator.navigate('Result');
   } 
 
   return (
@@ -108,8 +112,15 @@ const Search: React.FC = () => {
           </S.SearchContainer>
 
 
+        {searching
+        ? (
+          <S.LoaderContainer>
+            <ActivityIndicator size="large" color="#E20000"/>
+          </S.LoaderContainer>
+        )
+        : (
           <S.ResponseContainer>
-          { findResult && (
+          { findResult ? (
             <S.FindInfoContainer onPress={handleResult}>
               <S.FindImage source={{
                 uri: String(info?.image)
@@ -119,15 +130,16 @@ const Search: React.FC = () => {
                 { info?.name }
               </S.FindText>
             </S.FindInfoContainer>
-          )}
-          {error && (
+          ) : null }
+          {error ? (
             <S.ErrorContainer>
               <S.ErrorText>
                 {error}
               </S.ErrorText>
             </S.ErrorContainer>
-          )}
+          ) : null }
           </S.ResponseContainer>
+        )}
         </S.Container>
       </S.Wrapper>
       <Footer/>

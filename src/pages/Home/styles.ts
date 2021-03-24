@@ -37,6 +37,6 @@ export const Button = styled(TouchableOpacity)`
 export const ButtonText = styled(Text)`
     color: white;
     margin-left: 10px;
-    font-size: 30px;
+    font-size: 28px;
     width: 120px;
 `

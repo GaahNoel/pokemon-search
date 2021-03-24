@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { createContext, useState, ReactNode } from 'react';
+import { Pokemon, Item } from '../types/index';
+
 
 type SearchContextProps = {
   children: ReactNode;
@@ -8,32 +10,43 @@ type SearchContextProps = {
 type SearchContextData = {
   searchParam: string,
   changeSearchParam: (param: string) => void;
-  searchResult: any;
-  changeSearchResult: (result: any) => void;
+  searchResultPokemon: Pokemon;
+  changePokemonSearchResult: (result: Pokemon) => void;
+  searchResultItem: Item,
+  changeItemSearchResult: (result: Item) => void;
 }
 
-type Result = {
-  name: string,
-  image: string,
-}
 
 export const SearchContext = createContext({} as SearchContextData);
 
 
 export function SearchProvider({ children }: SearchContextProps) {
   const [searchParam, setSearchParam] = useState('');
-  const [searchResult, setSearchResult] = useState({} as any);
+  const [searchResultPokemon, setSearchResultPokemon] = useState({} as Pokemon);
+  const [searchResultItem, setSearchResultItem] = useState({} as Item);
 
   function changeSearchParam(param: string) {
     setSearchParam(param);
   }
 
-  function changeSearchResult(result: Result) {
-    setSearchResult(result);
+  function changePokemonSearchResult(result: Pokemon) {
+    setSearchResultPokemon(result);
+  }
+  
+  function changeItemSearchResult(result: Item) {
+    setSearchResultItem(result);
   }
 
   return (
-    <SearchContext.Provider value={ { searchParam, changeSearchParam, searchResult, changeSearchResult } }>
+    <SearchContext.Provider value={ {
+      searchParam,
+      changeSearchParam,
+      searchResultPokemon,
+      changePokemonSearchResult,
+      searchResultItem,
+      changeItemSearchResult
+    }}>
+      
       {children}
     </SearchContext.Provider>
   )

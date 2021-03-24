@@ -62,6 +62,7 @@ export const FindImage = styled(Image)`
 `;
 export const FindText = styled(Text)`
     font-size: 15px;
+    text-transform: uppercase;
 `;
 
 export const ErrorContainer = styled(View)`
@@ -86,4 +87,8 @@ export const ResponseContainer = styled(View)`
 
 export const SearchContainer = styled(View)`
     flex-direction:row;
+`;
+
+export const LoaderContainer = styled(View)`
+    margin-top: 25px;
 `;
