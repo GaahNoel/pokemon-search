@@ -7,7 +7,7 @@ import Footer from '../../components/Footer';
 
 import * as S from './styles';
 
-const Home: React.FC = () => {
+const Home = () => {
   const navigation = useNavigation();
   const { changeSearchParam } = useSearch();
 

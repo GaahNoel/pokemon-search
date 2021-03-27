@@ -27,3 +27,5 @@ export type Item = {
     effect: string;
   }]
 }
+
+export type PokemonTypesType = 'ELECTRIC' | 'POISON' | 'FIRE' | 'GRASS' | 'WATER' | 'DARK' | 'GHOST' | 'PSYCHIC' | 'DRAGON' | 'FAIRY' | 'BUG' | 'STEEL' | 'ROCK' | 'GROUND' | 'FLYING' | 'FIGHTING' | 'ICE' | 'NORMAL'

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useSearch } from '../../hooks/SearchContext';
 import Footer from '../../components/Footer';
-import { Text,  SafeAreaView  } from 'react-native';
+import { Text,  SafeAreaView, Keyboard } from 'react-native';
 import * as S from './styles';
 import axios from 'axios'
 import { useNavigation } from '@react-navigation/core';
@@ -24,7 +24,7 @@ type Sprite = {
 }
 
 
-const Search: React.FC = () => {
+const Search = () => {
   const { searchParam, changePokemonSearchResult, changeItemSearchResult } = useSearch();
   const [ searching, setSearching ] = useState(false);
   
@@ -37,7 +37,7 @@ const Search: React.FC = () => {
   const navigator = useNavigation();
 
   const handleSearch = async () => {
-    const splitedParams = searchParams.toLowerCase().split(' ');
+    const splitedParams = searchParams.toLowerCase().trim().split(' ');
     const rejoinedParams = splitedParams.join('-');
     setFindResult(false);
     setSearching(true);
@@ -105,7 +105,7 @@ const Search: React.FC = () => {
       <S.Wrapper>
         <S.Container>
           <S.SearchContainer>
-            <S.Input value={searchParams} onChangeText={(text) => setSearchParam(text)} />
+            <S.Input value={searchParams} onChangeText={(text) => setSearchParam(text)} onSubmitEditing={Keyboard.dismiss} />
             <S.SearchButton onPress={handleSearch}>
               <S.ButtonText>GO</S.ButtonText>
             </S.SearchButton>
