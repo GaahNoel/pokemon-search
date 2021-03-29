@@ -46,6 +46,7 @@ export const Container = styled(View)`
 export const FindImage = styled(Image)`
     width: 200px;
     height: 200px;
+    max-width: 80%;
 `;
 export const Title = styled(Text)`
     font-size: 28px;
@@ -64,6 +65,8 @@ export const TypeText = styled(Text)<TitleProps>`
     max-width: 100px;
     width: 100%;
     text-align: center;
+    justify-content:space-between;
+    margin: 5px;
 `;
 export const Info = styled(View)`
     max-width: 80%;

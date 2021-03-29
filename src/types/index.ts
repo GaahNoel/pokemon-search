@@ -1,3 +1,5 @@
+import { ReactNode } from "react"
+
 export type Pokemon = {
   name: string;
   sprites: { 
@@ -25,7 +27,21 @@ export type Item = {
   };
   effect_entries: [{
     effect: string;
+    short_effect: string;
   }]
 }
 
 export type PokemonTypesType = 'ELECTRIC' | 'POISON' | 'FIRE' | 'GRASS' | 'WATER' | 'DARK' | 'GHOST' | 'PSYCHIC' | 'DRAGON' | 'FAIRY' | 'BUG' | 'STEEL' | 'ROCK' | 'GROUND' | 'FLYING' | 'FIGHTING' | 'ICE' | 'NORMAL'
+
+export type SearchContextProps = {
+  children: ReactNode;
+}
+
+export type SearchContextData = {
+  searchParam: string,
+  changeSearchParam: (param: string) => void;
+  searchResultPokemon: Pokemon;
+  changePokemonSearchResult: (result: Pokemon) => void;
+  searchResultItem: Item,
+  changeItemSearchResult: (result: Item) => void;
+}
