@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { BackHandler, Linking } from 'react-native';
 import CommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Alert } from 'react-native';
 
 import * as S from './styles';
 
@@ -19,7 +20,7 @@ const Footer = ({ homePage }: FooterProps) => {
     else
     {
       if(homePage)
-        BackHandler.exitApp();
+        exitApp();
       else
         navigator.goBack();
     }
@@ -30,6 +31,25 @@ const Footer = ({ homePage }: FooterProps) => {
       setOpenMenu(false);
     else
       setOpenMenu(true);
+  }
+
+  function exitApp() {
+      Alert.alert(
+        "SAIR",
+        "Deseja sair do aplicativo?",
+        [
+          {
+            text: "Não",
+            style: "cancel"
+          },
+          {
+            text: "Sim",
+            onPress: async() => {
+              BackHandler.exitApp();
+            }
+          },
+        ]
+      );
   }
 
 
