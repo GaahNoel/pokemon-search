@@ -23,6 +23,8 @@ export const FindImage = styled(Image)`
 export const EffectsMap = styled(View)`
     margin-top: 5px;
     justify-content: center;
+    border: 1px solid white;
+    padding: 20px;
 `;
 export const EffectText = styled(Text)`
     color: white;
@@ -33,24 +35,33 @@ export const Title = styled(Text)`
     font-size: 28px;
     color: white;
     margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
 `;
 
 export const ShortEffectTitle = styled(Text)`
     color: #E50000;
     font-size: 20px;
     text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: bold;
 `;
 
 export const EffectsContainer = styled(View)`
     flex-direction: column;
     justify-content:center;
     align-items: center;
+    margin-bottom: 15px;
 `;
 
 export const LongEffectTitle = styled(Text)`
     color: #E50000;     
     font-size: 20px;
     text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: bold;
 `;
 
 export const Divisor = styled(View)`

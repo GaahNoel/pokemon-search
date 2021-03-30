@@ -92,3 +92,14 @@ export const SearchContainer = styled(View)`
 export const LoaderContainer = styled(View)`
     margin-top: 25px;
 `;
+
+export const Title = styled(Text)`
+    margin-bottom:10px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    font-size: 24px;
+`;
+export const Subtitle = styled(Text)`
+    color: #E50000;
+`;

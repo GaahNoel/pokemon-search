@@ -30,7 +30,7 @@ const ItemResult = () => {
             </S.Divisor>
 
             <S.Divisor>    
-              <S.LongEffectTitle>Long Description</S.LongEffectTitle>
+              <S.LongEffectTitle>Full Description</S.LongEffectTitle>
               <S.EffectsMap>
                 {effect_entries.map(effect => (
                   <S.EffectText key={effect.effect}>{effect.effect.toUpperCase()}</S.EffectText>

@@ -43,7 +43,7 @@ const PokemonResult = () => {
 
                 <S.StatsMap>
                   {stats.map((item) => (
-                      <S.Line>
+                      <S.Line key={item.stat.name}>
                         <S.BasicInfoTitle>
                           {item.stat.name.toUpperCase()} :
                         </S.BasicInfoTitle>
@@ -56,7 +56,7 @@ const PokemonResult = () => {
 
                 <S.TypesMap>
                 {types.map((item) => (
-                    <S.TypeText type={item.type.name.toUpperCase() as PokemonTypesType}>
+                    <S.TypeText type={item.type.name.toUpperCase() as PokemonTypesType} key={item.type.name}>
                       {item.type.name.toUpperCase()}
                     </S.TypeText>
                 ))}

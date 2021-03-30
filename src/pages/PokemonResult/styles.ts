@@ -61,12 +61,13 @@ export const TypeText = styled(Text)<TitleProps>`
     background: ${ props => (colors[props.type])};
     border-radius: 10px;
     color: white;
-    padding: 5px;
+    padding: 10px 5px;
     max-width: 100px;
     width: 100%;
     text-align: center;
     justify-content:space-between;
     margin: 5px;
+    font-weight: bold;
 `;
 export const Info = styled(View)`
     max-width: 80%;
@@ -92,11 +93,15 @@ export const BasicInfoContainer = styled(View)`
 `;
 export const BasicInfoText = styled(Text)`
     color: white;
+    font-size: 18px;
 
 `;
 export const BasicInfoTitle = styled(Text)`
     color: #E50000;
     font-weight: bold;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
 `;
 
 export const Line = styled(View)`
@@ -108,4 +113,5 @@ export const Line = styled(View)`
 export const Column = styled(Text)`
     color: white;
     margin-left: 20px;
+    font-size: 18px;
 `;

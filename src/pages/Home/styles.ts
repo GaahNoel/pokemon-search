@@ -38,5 +38,7 @@ export const ButtonText = styled(Text)`
     color: white;
     margin-left: 10px;
     font-size: 28px;
-    width: 120px;
+    width: 150px;
+    text-transform: uppercase;
+    font-weight: bold;
 `

@@ -32,6 +32,7 @@ const Footer = ({ homePage }: FooterProps) => {
       setOpenMenu(true);
   }
 
+
   function goToLink() {
     Linking.openURL('https://github.com/GaahNoel/');
   }
@@ -40,7 +41,7 @@ const Footer = ({ homePage }: FooterProps) => {
     <S.Container>
       <S.Menu open={openMenu}>
         <S.PokeballIcon name="pokeball" size={100} color="white" />
-        <S.Title>Pokedex</S.Title>
+        <S.Title>Pokemon Search</S.Title>
         <S.Name>Gabriel A. Noel</S.Name>
         <S.Link onPress={goToLink}>
           https://github.com/GaahNoel/
@@ -48,6 +49,7 @@ const Footer = ({ homePage }: FooterProps) => {
       </S.Menu>
       <S.Footer>
         <S.CommunityMenuIcon name="keyboard-return" size={50} onPress={goBack}/>
+        <S.EntypoMenuIcon name="home" size={50} onPress={() => navigator.navigate('Home')}/>
         <S.EntypoMenuIcon name="menu" size={50} onPress={handleOpenMenu}/>
       </S.Footer>  
     </S.Container>

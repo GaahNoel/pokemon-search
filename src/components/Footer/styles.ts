@@ -38,6 +38,7 @@ export const Title = styled(Text)`
   color: white;
   font-size: 30px;
   margin-bottom: 10px;
+  font-weight: bold;
 `;
 export const Name = styled(Text)`
   color: white;

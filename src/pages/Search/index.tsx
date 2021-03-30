@@ -104,6 +104,7 @@ const Search = () => {
     <>
       <S.Wrapper>
         <S.Container>
+          <S.Title>Search for <S.Subtitle>{searchParam}</S.Subtitle></S.Title>
           <S.SearchContainer>
             <S.Input value={searchParams} onChangeText={(text) => setSearchParam(text)} onSubmitEditing={Keyboard.dismiss} />
             <S.SearchButton onPress={handleSearch}>
