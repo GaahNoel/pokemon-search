@@ -1,10 +1,14 @@
 import styled from 'styled-components/native';
-import { View, TouchableOpacity, Text, TouchableOpacityProps } from 'react-native';
+import { View, TouchableOpacity, Text, ViewProps, KeyboardAvoidingView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import CommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-interface ButtonContainerProps extends TouchableOpacityProps {
+interface ButtonContainerProps extends ViewProps {
     isActive: boolean;
     option: 'Login' | 'Register';
+}
+interface ContentProps extends ViewProps {
+    isKeyboardOpened: boolean;
 }
 
 export const Wrapper = styled(View)`
@@ -20,7 +24,15 @@ export const Container = styled(View)`
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    height: 50%;
+    height: 90%;
+`; 
+
+export const Content = styled(View)<ContentProps>`
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: ${props => props.isKeyboardOpened ? '80%' : '60%'};
 `; 
 
 export const ButtonContainer = styled(View)<ButtonContainerProps>`
@@ -29,31 +41,31 @@ export const ButtonContainer = styled(View)<ButtonContainerProps>`
                 if(props.isActive)
                     return `
                         border-left-color: #e50000;
-                        border-left-width: 1px;
+                        border-left-width: 2px;
                         border-right-color: #e50000;
-                        border-right-width: 1px;
+                        border-right-width: 2px;
                     `;
                 else 
-                    return 'border-left-color: white; border-left-width: 1px;';
+                    return 'border-left-color: white; border-left-width: 2px;';
             }
             else {
                 if(props.isActive)
                     return `
                         border-right-color: #e50000;
-                        border-right-width: 1px;
+                        border-right-width: 2px;
                         border-left-color: #e50000;
-                        border-left-width: 1px;
+                        border-left-width: 2px;
                     `;
                 else 
-                    return 'border-right-color: white; border-right-width: 1px;';
+                    return 'border-right-color: white; border-right-width: 2px;';
             }
         }
-    }
+    };
 
-    border-top-width: 1px;
+    border-top-width: 2px;
     border-top-color: ${props => props.isActive ? '#e50000' : 'white'};
-    ${props => !props.isActive ? 'border-bottom-width: 1px; border-bottom-color: #e50000' : ''};
-   
+    ${props => !props.isActive ? 'border-bottom-width: 2px; border-bottom-color: #e50000' : ''};
+    
     width: 50%;
 `;
 
@@ -75,9 +87,9 @@ export const Options = styled(View)`
     
 `;
 
-export const OptionContainer = styled(View)`
-    border: 1px solid #e50000;
-    border-top-color: #3E3E3E;
+export const OptionContainer = styled(KeyboardAvoidingView)`
+    border: 2px solid #e50000;
+    border-top-width: 0;
     width: 90%;
     margin: 0 auto;
     justify-content:center;
@@ -92,6 +104,7 @@ export const Input = styled(TextInput)`
     margin: 10px;
     color: white;
 `;
+
 export const InputText = styled(Text)`
     color: white;
 `;
@@ -107,3 +120,13 @@ export const ConfirmButtonText =  styled(Text)`
     color: white;
     font-weight: bold;
 `
+
+export const Title = styled(Text)`
+  color: white;
+  font-size: 30px;
+  margin-bottom: 10px;
+  font-weight: bold;
+`;
+export const PokeballIcon = styled(CommunityIcon)`
+  margin: 15px 0;
+`;
