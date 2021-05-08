@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { View, Text, TouchableOpacity } from 'react-native';
-import EntypoIcon from 'react-native-vector-icons/Entypo';
-import CommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export const Wrapper = styled(View)`
     justify-content:center;
@@ -42,3 +40,4 @@ export const ButtonText = styled(Text)`
     text-transform: uppercase;
     font-weight: bold;
 `
+
