@@ -52,13 +52,13 @@ const LoginAndRegister = () => {
           <S.Options>
             <S.ButtonContainer option="Login" isActive={option === 'Login' ? true : false} >
               <S.Button  onPress={() =>  setOption('Login')}>
-                <S.ButtonText >Login</S.ButtonText>
+                <S.ButtonText isActive={option === 'Login' ? true : false}>Login</S.ButtonText>
               </S.Button>
             </S.ButtonContainer>
 
             <S.ButtonContainer option="Register" isActive={option === 'Register' ? true : false} >
               <S.Button  onPress={() =>  setOption('Register')}>
-                <S.ButtonText >Register</S.ButtonText>
+                <S.ButtonText isActive={option === 'Register' ? true : false}>Register</S.ButtonText>
               </S.Button>
             </S.ButtonContainer>
           </S.Options>

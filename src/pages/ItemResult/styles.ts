@@ -9,7 +9,7 @@ export const Wrapper = styled(View)`
     align-items: center;
     flex-direction:column;
     flex: 1;
-    background: #3E3E3E;
+    background: #151515;
 `;
 export const Container = styled(View)`
     align-items: center;
@@ -23,8 +23,9 @@ export const FindImage = styled(Image)`
 export const EffectsMap = styled(View)`
     margin-top: 5px;
     justify-content: center;
-    border: 1px solid white;
     padding: 20px;
+    background: #E50000;
+    width: 100%;
 `;
 export const EffectText = styled(Text)`
     color: white;
@@ -40,7 +41,7 @@ export const Title = styled(Text)`
 `;
 
 export const ShortEffectTitle = styled(Text)`
-    color: #E50000;
+    color: white;
     font-size: 20px;
     text-align: center;
     text-transform: uppercase;
@@ -53,10 +54,11 @@ export const EffectsContainer = styled(View)`
     justify-content:center;
     align-items: center;
     margin-bottom: 15px;
+    width: 100%;
 `;
 
 export const LongEffectTitle = styled(Text)`
-    color: #E50000;     
+    color: white;     
     font-size: 20px;
     text-align: center;
     text-transform: uppercase;
@@ -65,6 +67,6 @@ export const LongEffectTitle = styled(Text)`
 `;
 
 export const Divisor = styled(View)`
-    max-width: 80%;
+    width: 80%;
     margin-bottom: 20px;
 `;

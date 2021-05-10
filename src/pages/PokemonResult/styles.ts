@@ -37,7 +37,7 @@ export const Wrapper = styled(View)`
     align-items: center;
     flex-direction:column;
     flex: 1;
-    background: #3E3E3E;
+    background: #151515;
 `;
 export const Container = styled(View)`
     align-items: center;
@@ -81,7 +81,7 @@ export const BasicInfoWrapper = styled(View)`
 
 export const StatsMap = styled(View)`
     margin-top: 10px;
-    border: 1px solid white;
+    background: #e50000;
 `;
 export const TypesMap = styled(View)`
     justify-content:center; 
@@ -98,7 +98,7 @@ export const BasicInfoText = styled(Text)`
 
 `;
 export const BasicInfoTitle = styled(Text)`
-    color: #E50000;
+    color: white;
     font-weight: bold;
     text-transform: uppercase;
     font-weight: bold;
@@ -109,6 +109,7 @@ export const Line = styled(View)`
     flex-direction: row;
     justify-content: space-between;
     padding: 10px;
+    border: 1px solid #151515;
 `;
 
 export const Column = styled(Text)`

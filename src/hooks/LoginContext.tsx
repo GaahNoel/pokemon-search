@@ -12,7 +12,6 @@ export function LoginProvider({ children }: LoginProps) {
   const [userEmail, setUserEmail] = useState('');
   const [favorite, setFavorite] = useState(''); 
 
-
   const checkFavorite = async (email: string) => {
     const response = await FirebaseDB.collection('favorite').where('email', '==', email).get();
     const parsedData = [] as any;
@@ -59,7 +58,7 @@ export function LoginProvider({ children }: LoginProps) {
   }
 
   return (
-    <LoginContext.Provider value={ {
+    <LoginContext.Provider value={{
       isLogged,
       changeIsLogged,
       userEmail,
@@ -67,7 +66,6 @@ export function LoginProvider({ children }: LoginProps) {
       checkFavorite,
       favorite,
       changeFavorite,
-
     }}>
       
       {children}

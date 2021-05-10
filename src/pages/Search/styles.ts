@@ -7,7 +7,7 @@ export const Wrapper = styled(View)`
     align-items: center;
     flex-direction:column;
     flex: 1;
-    background: #3E3E3E;
+    background: #151515;
 `; 
 export const Container = styled(View)`
     align-items: center;

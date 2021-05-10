@@ -1,11 +1,14 @@
 import styled from 'styled-components/native';
-import { View, TouchableOpacity, Text, ViewProps, KeyboardAvoidingView } from 'react-native';
+import { View, TouchableOpacity, Text, ViewProps, KeyboardAvoidingView, TextProps } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import CommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface ButtonContainerProps extends ViewProps {
     isActive: boolean;
     option: 'Login' | 'Register';
+}
+interface ButttonTextProps extends TextProps {
+    isActive: boolean;
 }
 interface ContentProps extends ViewProps {
     isKeyboardOpened: boolean;
@@ -20,7 +23,7 @@ export const Wrapper = styled(View)`
     align-items: center;
     flex-direction:column;
     flex: 1;
-    background: #3E3E3E;
+    background: #151515;
 `; 
 
 export const Container = styled(View)`
@@ -40,35 +43,8 @@ export const Content = styled(View)<ContentProps>`
 `; 
 
 export const ButtonContainer = styled(View)<ButtonContainerProps>`
-    ${props => {
-            if(props.option === 'Login') {
-                if(props.isActive)
-                    return `
-                        border-left-color: #e50000;
-                        border-left-width: 2px;
-                        border-right-color: #e50000;
-                        border-right-width: 2px;
-                    `;
-                else 
-                    return 'border-left-color: white; border-left-width: 2px;';
-            }
-            else {
-                if(props.isActive)
-                    return `
-                        border-right-color: #e50000;
-                        border-right-width: 2px;
-                        border-left-color: #e50000;
-                        border-left-width: 2px;
-                    `;
-                else 
-                    return 'border-right-color: white; border-right-width: 2px;';
-            }
-        }
-    };
-
-    border-top-width: 2px;
-    border-top-color: ${props => props.isActive ? '#e50000' : 'white'};
     ${props => !props.isActive ? 'border-bottom-width: 2px; border-bottom-color: #e50000' : ''};
+    background:  ${props => props.isActive ? '#e50000' : 'white'};
     
     width: 50%;
 `;
@@ -87,10 +63,11 @@ export const GuestText = styled(Text)`
     font-size: 18px;
 `;
 
-export const ButtonText = styled(Text)`
-    color: white;
+export const ButtonText = styled(Text)<ButttonTextProps>`
+    color: ${props => props.isActive ? 'white' : 'black'};
     width: 150px;
     text-align: center;
+    font-weight: bold;
 `;
 
 export const Options = styled(View)`
@@ -103,6 +80,7 @@ export const Options = styled(View)`
 
 export const OptionContainer = styled(KeyboardAvoidingView)`
     border: 2px solid #e50000;
+    background:  #e50000;
     border-top-width: 0;
     width: 90%;
     margin: 0 auto;
@@ -116,7 +94,7 @@ export const Input = styled(TextInput)<InputProps>`
     width: 80%;
     margin: 10px;
     color: white;
-    border: 1px solid ${props => props.error ? '#e50000;': 'white'};
+    border: 2px solid ${props => props.error ? '#e50000;': 'white'};
     
 `;
 
@@ -125,7 +103,7 @@ export const InputText = styled(Text)`
 `;
 
 export const ConfirmButton =  styled(TouchableOpacity)`
-    background: #e50000;
+    background: #151515;
     padding: 20px 10px;
     width: 80%;
     margin-top: 20px;

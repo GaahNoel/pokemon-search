@@ -6,11 +6,14 @@ import * as S from './styles';
 import { Pokemon } from '../../types';
 import { PokemonTypesType } from '../../types';
 import { useLogin } from '../../hooks/LoginContext';
+import { useNavigation } from '@react-navigation/native';
 
 
 const PokemonResult = () => {
   const { searchResultPokemon, searchParam } = useSearch();
-  const { favorite, changeFavorite } = useLogin();
+  const { favorite, changeFavorite, isLogged } = useLogin();
+  const navigation = useNavigation();
+
 
   const {
     name,
@@ -21,12 +24,22 @@ const PokemonResult = () => {
     types
   } = searchResultPokemon
 
+  const handleFavoriteButtonClick = () => {
+
+    if(!isLogged) {
+      alert('This feature need login, please sign in first');
+      navigation.navigate('LoginAndRegister');
+      return;
+    }
+    changeFavorite(name)
+  }
+
     return (
       <>
         <S.Wrapper>
           <S.Container>
 
-              <S.FavoriteButton onPress={() => changeFavorite(name)}>
+              <S.FavoriteButton onPress={handleFavoriteButtonClick}>
                 <S.StarIcon name={favorite ===  name ? "star" : "star-o"} size={50} color="white"/>
               </S.FavoriteButton>
 
