@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { createContext, useState, ReactNode } from 'react';
 import { Pokemon, Item, SearchContextProps, SearchContextData } from '../types/index';
+import axios from 'axios';
 
 
 export const SearchContext = createContext({} as SearchContextData);
@@ -22,6 +23,16 @@ export function SearchProvider({ children }: SearchContextProps) {
     setSearchResultItem(result);
   }
 
+  async function getDataAndSetPokemonResult(pokemon: string) {
+    try {
+      const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`) as any;
+      setSearchResultPokemon(data);  
+
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
   return (
     <SearchContext.Provider value={ {
       searchParam,
@@ -29,7 +40,8 @@ export function SearchProvider({ children }: SearchContextProps) {
       searchResultPokemon,
       changePokemonSearchResult,
       searchResultItem,
-      changeItemSearchResult
+      changeItemSearchResult,
+      getDataAndSetPokemonResult
     }}>
       
       {children}

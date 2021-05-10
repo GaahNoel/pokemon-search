@@ -11,6 +11,10 @@ interface ContentProps extends ViewProps {
     isKeyboardOpened: boolean;
 }
 
+interface InputProps {
+    error ?: boolean;
+}
+
 export const Wrapper = styled(View)`
     justify-content:center;
     align-items: center;
@@ -71,8 +75,18 @@ export const ButtonContainer = styled(View)<ButtonContainerProps>`
 
 export const Button = styled(TouchableOpacity)`
     padding: 20px 5px;
-
 `;
+
+export const GuestButton = styled(TouchableOpacity)`
+    margin-top: 20px;
+`;
+
+export const GuestText = styled(Text)`
+    color: white;
+    text-decoration: underline;
+    font-size: 18px;
+`;
+
 export const ButtonText = styled(Text)`
     color: white;
     width: 150px;
@@ -97,12 +111,13 @@ export const OptionContainer = styled(KeyboardAvoidingView)`
     flex: 1;
 `;
 
-export const Input = styled(TextInput)`
-    border: 1px solid white;
+export const Input = styled(TextInput)<InputProps>`
     padding: 10px;
     width: 80%;
     margin: 10px;
     color: white;
+    border: 1px solid ${props => props.error ? '#e50000;': 'white'};
+    
 `;
 
 export const InputText = styled(Text)`
@@ -127,6 +142,8 @@ export const Title = styled(Text)`
   margin-bottom: 10px;
   font-weight: bold;
 `;
+
 export const PokeballIcon = styled(CommunityIcon)`
   margin: 15px 0;
 `;
+

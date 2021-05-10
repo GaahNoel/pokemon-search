@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { View, Text, KeyboardAvoidingView, Keyboard } from 'react-native';
-import { Firebase } from '../../config/firebase'
+import { FirebaseAuth } from '../../config/firebase'
+import { useLogin } from '../../hooks/LoginContext';
 
 import * as S from './styles';
 
@@ -13,7 +14,8 @@ type SelectProps = {
 
 const LoginAndRegister = () => {
   const [option, setOption] = useState('Login' as optionsType);
-  const [isKeyboardOpened, setKeyboardOpened] = useState(false)
+  const [isKeyboardOpened, setKeyboardOpened] = useState(false);
+  const navigation = useNavigation();
 
 
   useEffect(() => {
@@ -63,6 +65,11 @@ const LoginAndRegister = () => {
 
           <S.OptionContainer>
               <SelectOption option={option}/>
+              <S.GuestButton onPress={() => navigation.navigate('Home')} >
+                <S.GuestText>
+                  Sign In as Guest
+                </S.GuestText>
+              </S.GuestButton>
           </S.OptionContainer>
      
       </S.Content>
@@ -83,16 +90,37 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+
   const handleRegister = async() => {
-    const FirebaseAuth = Firebase.auth();
     try {
-      if(password !== confirmPassword)
+      setPasswordError(false);
+      setEmailError(false);
+
+      if(password !== confirmPassword) {
+        alert('The passwords do not match');
+        setPasswordError(true);
         return;
+      }
 
       const { user } = await FirebaseAuth.createUserWithEmailAndPassword(email, password);
-      alert('Usuário criado com sucesso');
+      if(user)
+        user.sendEmailVerification();
+
+      alert('User created, please check your email for confirmation');
       
     } catch(error) {
+      const lowerCaseError = error.message.toLowerCase();
+
+      const isEmailError = lowerCaseError.includes('email');
+      if(isEmailError)
+        setEmailError(true);
+
+      const isPasswordError = lowerCaseError.includes('password');
+      if(isPasswordError)
+        setPasswordError(true);
+
       alert(error.message);
     }
   }
@@ -100,22 +128,31 @@ const Register = () => {
   return (
     <>
       <S.Input
-         placeholderTextColor="white"
+        placeholderTextColor="white"
         placeholder="Email"
-        onChangeText={(email) => setEmail(email) }
+        value={email}
+        onChangeText={(email) => setEmail(email.trim()) }
+        error={emailError}
+        autoCapitalize='none'
       />
       
       <S.Input
         placeholderTextColor="white"
         secureTextEntry={true}
         placeholder="Password"
+        value={password}
         onChangeText={(password) => setPassword(password) }
+        error={passwordError}
+        autoCapitalize='none'
       />
 
       <S.Input
         placeholderTextColor="white" secureTextEntry={true}
         placeholder="Confirm Password"
+        value={confirmPassword}
         onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword) }
+        error={passwordError}
+        autoCapitalize='none'
       />
 
       <S.ConfirmButton onPress={handleRegister}>
@@ -128,23 +165,60 @@ const Register = () => {
 }
 
 const Login = () => {
+
+  type Credential = {
+    user: {
+      email: string,
+      emailVerified: boolean,
+      sendEmailVerification: () => void,
+    },
+  }
+
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const { changeIsLogged, changeUserEmail, checkFavorite } = useLogin();
 
   const handleLogin = async() => {
-    const FirebaseAuth = Firebase.auth();
     try {
-      const userCredential = await FirebaseAuth.signInWithEmailAndPassword(email, password);
+      setPasswordError(false);
+      setEmailError(false);
+
+      const { user } = await FirebaseAuth.signInWithEmailAndPassword(email, password) as Credential;
       
+      if(!user.emailVerified) {
+           
+        setEmailError(true);
+        user.sendEmailVerification();
+        
+        alert('Email not verified, new email was sent for verification');
+        return;
+      }
+
       setEmail('');
       setPassword('');
-      
-      alert('Usuário logado com sucesso');
-      
+
+      changeIsLogged(true);
+      changeUserEmail(user.email);
+
+      await checkFavorite(user.email);
+
+
       navigation.navigate('Home');
       
     } catch(error) {
+      const lowerCaseError = error.message.toLowerCase();
+
+      const isEmailError = lowerCaseError.includes('email');
+      if(isEmailError)
+        setEmailError(true);
+
+      const isPasswordError = lowerCaseError.includes('password');
+      if(isPasswordError)
+        setPasswordError(true);
+
       alert(error.message);
     }
   }
@@ -154,14 +228,20 @@ const Login = () => {
       <S.Input
         placeholderTextColor="white"
         placeholder="Email"
-        onChangeText={(email) => setEmail(email) }
+        value={email}
+        onChangeText={(email) => setEmail(email.trim()) }
+        error={emailError}
+        autoCapitalize='none' 
       />
 
       <S.Input
         placeholderTextColor="white"
         secureTextEntry={true}
         placeholder="Senha"
+        value={password}
         onChangeText={(password) => setPassword(password) }
+        error={passwordError}
+        autoCapitalize='none'
       />
 
       <S.ConfirmButton onPress={handleLogin}>

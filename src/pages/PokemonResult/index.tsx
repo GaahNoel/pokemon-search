@@ -5,10 +5,13 @@ import Footer from '../../components/Footer';
 import * as S from './styles';
 import { Pokemon } from '../../types';
 import { PokemonTypesType } from '../../types';
+import { useLogin } from '../../hooks/LoginContext';
 
 
 const PokemonResult = () => {
   const { searchResultPokemon, searchParam } = useSearch();
+  const { favorite, changeFavorite } = useLogin();
+
   const {
     name,
     sprites,
@@ -22,6 +25,11 @@ const PokemonResult = () => {
       <>
         <S.Wrapper>
           <S.Container>
+
+              <S.FavoriteButton onPress={() => changeFavorite(name)}>
+                <S.StarIcon name={favorite ===  name ? "star" : "star-o"} size={50} color="white"/>
+              </S.FavoriteButton>
+
               <S.FindImage source={{
                 uri: String(sprites.front_default)
               }}></S.FindImage>

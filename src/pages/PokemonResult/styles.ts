@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import { View, Text, TouchableOpacity, Image, TextProps } from 'react-native';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import CommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FA from 'react-native-vector-icons/FontAwesome';
 import { PokemonTypesType } from '../../types';
 
 const colors = {
@@ -114,4 +115,12 @@ export const Column = styled(Text)`
     color: white;
     margin-left: 20px;
     font-size: 18px;
+`;
+export const FavoriteButton = styled(TouchableOpacity)`
+    position: absolute;
+    top: 10%;
+    right: 0;
+`;
+export const StarIcon = styled(FA)`
+    
 `;

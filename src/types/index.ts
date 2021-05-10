@@ -44,4 +44,26 @@ export type SearchContextData = {
   changePokemonSearchResult: (result: Pokemon) => void;
   searchResultItem: Item,
   changeItemSearchResult: (result: Item) => void;
+  getDataAndSetPokemonResult: (pokemon: string) => Promise<void>;
 }
+
+export type LoginProps = {
+  children: ReactNode;
+}
+
+export type LoginData = {
+  isLogged: boolean;
+  changeIsLogged: (param: boolean) => void;
+  userEmail: string;
+  changeUserEmail: (param: string) => void;
+  checkFavorite: (email: string) => Promise<string | void>;
+  favorite: string;
+  changeFavorite: (param: string) => void;
+  
+}
+
+export type FavoriteType = [{
+  email: string;
+  favorite: string;
+}]
+

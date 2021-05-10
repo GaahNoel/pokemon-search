@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { View, Text, TouchableOpacity } from 'react-native';
+import FA from 'react-native-vector-icons/FontAwesome';
+import Feather from 'react-native-vector-icons/Feather';
 
 export const Wrapper = styled(View)`
     justify-content:center;
@@ -8,10 +10,13 @@ export const Wrapper = styled(View)`
     flex-direction:column;
     flex: 1;
     background: #3E3E3E;
+    position: relative;
+    height: 100%;
 `;
 export const Container = styled(View)`
     align-items: center;
     justify-content: center;
+    height: 100%;
 `;
 
 export const PrincipalText = styled(Text)`
@@ -26,10 +31,10 @@ export const Button = styled(TouchableOpacity)`
     border-radius: 10px;
     padding: 20px;
     border: 1px solid white;
-    justify-content:center;
     align-items:center;
     flex-direction: row;
-    margin: 20px;
+    margin: 20px 0;
+    width: 100%;
 `; 
 
 export const ButtonText = styled(Text)`
@@ -40,4 +45,20 @@ export const ButtonText = styled(Text)`
     text-transform: uppercase;
     font-weight: bold;
 `
+export const StarIcon = styled(FA)`
+    
+`;
+export const PowerIcon = styled(Feather)`
+    
+`;
 
+export const FavoriteButton = styled(TouchableOpacity)`
+    position: absolute;
+    top: 10%;
+    right: 0;
+`;
+export const LogoutButton = styled(TouchableOpacity)`
+    position: absolute;
+    top: 10%;
+    left: 0;
+`;
