@@ -128,7 +128,7 @@ const Register = () => {
   return (
     <>
       <S.Input
-        placeholderTextColor="white"
+        placeholderTextColor="black"
         placeholder="Email"
         value={email}
         onChangeText={(email) => setEmail(email.trim()) }
@@ -137,7 +137,7 @@ const Register = () => {
       />
       
       <S.Input
-        placeholderTextColor="white"
+        placeholderTextColor="black"
         secureTextEntry={true}
         placeholder="Password"
         value={password}
@@ -147,7 +147,7 @@ const Register = () => {
       />
 
       <S.Input
-        placeholderTextColor="white" secureTextEntry={true}
+        placeholderTextColor="black" secureTextEntry={true}
         placeholder="Confirm Password"
         value={confirmPassword}
         onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword) }
@@ -226,7 +226,7 @@ const Login = () => {
   return (
     <>
       <S.Input
-        placeholderTextColor="white"
+        placeholderTextColor="black"
         placeholder="Email"
         value={email}
         onChangeText={(email) => setEmail(email.trim()) }
@@ -235,7 +235,7 @@ const Login = () => {
       />
 
       <S.Input
-        placeholderTextColor="white"
+        placeholderTextColor="black"
         secureTextEntry={true}
         placeholder="Senha"
         value={password}
