@@ -42,8 +42,15 @@ export function LoginProvider({ children }: LoginProps) {
     try{
       const response = await FirebaseDB.collection('favorite').where('email', '==', userEmail).get();
 
-      if(!response.docs[0])
+      if(!response.docs[0]) {
+        await FirebaseDB.collection('favorite').add({
+          email: userEmail,
+          pokemon: pokemon,
+        })
+
+        setFavorite(pokemon);
         return;
+      }
 
       const doc = response.docs[0].id;
       await FirebaseDB.collection('favorite').doc(doc).update({
@@ -66,6 +73,7 @@ export function LoginProvider({ children }: LoginProps) {
       checkFavorite,
       favorite,
       changeFavorite,
+      setFavorite,
     }}>
       
       {children}

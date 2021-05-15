@@ -59,7 +59,7 @@ export type LoginData = {
   checkFavorite: (email: string) => Promise<string | void>;
   favorite: string;
   changeFavorite: (param: string) => void;
-  
+  setFavorite: (param: string) => void;
 }
 
 export type FavoriteType = [{

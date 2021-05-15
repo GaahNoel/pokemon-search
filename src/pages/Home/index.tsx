@@ -13,7 +13,7 @@ import { useLogin } from '../../hooks/LoginContext';
 const Home = () => {
   const navigation = useNavigation();
   const { changeSearchParam, changePokemonSearchResult, getDataAndSetPokemonResult } = useSearch();
-  const { isLogged, userEmail, changeIsLogged, changeUserEmail, favorite, changeFavorite } = useLogin();
+  const { isLogged, userEmail, changeIsLogged, changeUserEmail, favorite, setFavorite } = useLogin();
 
   const handleNavigateToSearchPage = (param: string) => {
     changeSearchParam(param);
@@ -25,7 +25,8 @@ const Home = () => {
       await FirebaseAuth.signOut();
       changeIsLogged(false);
       changeUserEmail('');
-      changeFavorite('');
+
+      setFavorite('');
 
       navigation.navigate('LoginAndRegister');
 
