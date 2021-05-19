@@ -42,7 +42,6 @@ const ItemResult = () => {
 
         </S.Container>
       </S.Wrapper>
-      <Footer/>
     </>
    )
 }

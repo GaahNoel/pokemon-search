@@ -6,6 +6,7 @@ import * as S from './styles';
 import axios from 'axios'
 import { useNavigation } from '@react-navigation/core';
 import { ActivityIndicator } from 'react-native';
+import HomeButton from '../../components/HomeButton';
 
 
 type Info = {
@@ -102,6 +103,7 @@ const Search = () => {
 
   return (
     <>
+      <HomeButton/>
       <S.Wrapper>
         <S.Container>
           <S.Title>Search for <S.Subtitle>{searchParam}</S.Subtitle></S.Title>
@@ -143,7 +145,6 @@ const Search = () => {
         )}
         </S.Container>
       </S.Wrapper>
-      <Footer/>
     </>
   );
 }

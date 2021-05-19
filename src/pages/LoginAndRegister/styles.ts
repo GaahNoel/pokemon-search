@@ -44,7 +44,6 @@ export const Content = styled(View)<ContentProps>`
 
 export const ButtonContainer = styled(View)<ButtonContainerProps>`
     background:  ${props => props.isActive ? '#e50000' : 'white'};
-    
     width: 50%;
 `;
 
@@ -77,10 +76,10 @@ export const Options = styled(View)`
     
 `;
 
-export const OptionContainer = styled(KeyboardAvoidingView)`
+export const OptionContainer = styled(KeyboardAvoidingView)<ContentProps>`
     border: 2px solid #e50000;
     background:  #151515;
-    border-top-width: 0;
+    border-top-width: ${props => props.isKeyboardOpened ? '1px' : 0};
     width: 90%;
     margin: 0 auto;
     justify-content:center;
@@ -89,7 +88,7 @@ export const OptionContainer = styled(KeyboardAvoidingView)`
 `;
 
 export const Input = styled(TextInput)<InputProps>`
-    padding: 10px;
+    padding: 5px 10px;
     width: 80%;
     margin: 10px;
     border: 2px solid ${props => props.error ? '#e50000;': 'white'};
@@ -102,7 +101,7 @@ export const InputText = styled(Text)`
 
 export const ConfirmButton =  styled(TouchableOpacity)`
     background: #e50000;
-    padding: 20px 10px;
+    padding: 10px 10px;
     width: 80%;
     margin-top: 20px;
 `

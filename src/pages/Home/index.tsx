@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import CommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSearch } from '../../hooks/SearchContext';
-import Footer from '../../components/Footer';
+import HomeButton from '../../components/HomeButton';
 import { FirebaseDB, FirebaseAuth } from '../../config/firebase';
 import { FavoriteType } from '../../types';
 
@@ -76,9 +76,7 @@ const Home = () => {
             <S.ButtonText>Item</S.ButtonText>
           </S.Button>
         </S.Container>
-
       </S.Wrapper>
-      <Footer homePage={true}/>
     </>
   );
 }

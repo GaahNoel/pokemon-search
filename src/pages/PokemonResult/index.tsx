@@ -86,7 +86,6 @@ const PokemonResult = () => {
               </S.Info>
           </S.Container>
         </S.Wrapper>
-        <Footer/>
       </>
     );
 }

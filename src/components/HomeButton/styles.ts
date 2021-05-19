@@ -8,12 +8,13 @@ interface MenuProps extends ViewProps {
 }
 
 export const Container = styled(View)`
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
 `; 
-export const Footer = styled(View)`
+export const Content = styled(View)`
   flex-direction: row;
   justify-content:space-between;
-  background: #E50000;
 `; 
 export const EntypoMenuIcon = styled(EntypoIcon)`
   color: white;
@@ -24,16 +25,7 @@ export const CommunityMenuIcon = styled(CommunityIcon)`
   color: white;
   margin-left: 10px;
 `
-export const Menu = styled(View)<MenuProps>`
-  opacity: ${(props) => (props.open ? 100 : 0) };
-  max-height: 400px;
-  width: 100%;
-  background:#E50000;
-  position: absolute;
-  z-index: 10;
-  bottom: 100%;
-  align-items:center;
-`; 
+
 export const Title = styled(Text)`
   color: white;
   font-size: 30px;

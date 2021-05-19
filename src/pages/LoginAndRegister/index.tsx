@@ -49,6 +49,8 @@ const LoginAndRegister = () => {
       ): null}
 
       <S.Content isKeyboardOpened={isKeyboardOpened}>
+
+        {!isKeyboardOpened && (
           <S.Options>
             <S.ButtonContainer option="Login" isActive={option === 'Login' ? true : false} >
               <S.Button  onPress={() =>  setOption('Login')}>
@@ -62,8 +64,9 @@ const LoginAndRegister = () => {
               </S.Button>
             </S.ButtonContainer>
           </S.Options>
+        )}
 
-          <S.OptionContainer>
+          <S.OptionContainer isKeyboardOpened={isKeyboardOpened}>
               <SelectOption option={option}/>
               <S.GuestButton onPress={() => navigation.navigate('Home')} >
                 <S.GuestText>

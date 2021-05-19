@@ -1,6 +1,8 @@
 import React from 'react';
 import Routes from './src/routes';
-console.ignoredYellowBox = ['Setting a timer'];
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Setting a timer']);
 
 export default function App() {
   return <Routes/>;
