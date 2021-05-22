@@ -16,6 +16,7 @@
     "@types/styled-components-react-native": "^5.1.1",
     "axios": "^0.21.1",
     "expo": "~40.0.0",
+    "expo-notifications": "~0.8.2",
     "expo-splash-screen": "~0.8.0",
     "expo-updates": "~0.4.0",
     "firebase": "^8.5.0",

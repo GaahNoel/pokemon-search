@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, KeyboardAvoidingView, Keyboard } from 'react-native';
 import { FirebaseAuth } from '../../config/firebase'
 import { useLogin } from '../../hooks/LoginContext';
+import * as Notifications from 'expo-notifications';
+
 
 import * as S from './styles';
 
@@ -176,6 +178,7 @@ const Login = () => {
       sendEmailVerification: () => void,
     },
   }
+  
 
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
@@ -208,6 +211,20 @@ const Login = () => {
 
       await checkFavorite(user.email);
 
+      const notificationId = await Notifications.scheduleNotificationAsync(
+        {
+          content: {
+            title: 'Que tal escolher um pokemon novo? 😉',
+            body:
+              `Venha ver as estatísticas do próximo pokemon que quer no seu time e ver se é uma boa escolha!`,
+            sound: true,
+            priority: Notifications.AndroidNotificationPriority.HIGH,
+          },
+          trigger: {
+            seconds: 60,
+          }
+        }
+      )
 
       navigation.navigate('Home');
       
