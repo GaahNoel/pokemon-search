@@ -187,6 +187,16 @@ const Login = () => {
   const [emailError, setEmailError] = useState(false);
   const { changeIsLogged, changeUserEmail, checkFavorite } = useLogin();
 
+  const createHandleNotification = () => {
+    Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: false,
+        shouldSetBadge: false,
+      }),
+    });
+  }
+
   const handleLogin = async() => {
     try {
       setPasswordError(false);
@@ -211,6 +221,7 @@ const Login = () => {
 
       await checkFavorite(user.email);
 
+      createHandleNotification();
       const notificationId = await Notifications.scheduleNotificationAsync(
         {
           content: {
@@ -221,7 +232,7 @@ const Login = () => {
             priority: Notifications.AndroidNotificationPriority.HIGH,
           },
           trigger: {
-            seconds: 60,
+            seconds: 30,
           }
         }
       )
