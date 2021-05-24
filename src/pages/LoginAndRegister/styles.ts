@@ -63,7 +63,6 @@ export const GuestText = styled(Text)`
 
 export const ButtonText = styled(Text)<ButttonTextProps>`
     color: ${props => props.isActive ? 'white' : 'black'};
-    width: 150px;
     text-align: center;
     font-weight: bold;
 `;

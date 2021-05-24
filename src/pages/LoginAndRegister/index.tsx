@@ -56,13 +56,13 @@ const LoginAndRegister = () => {
           <S.Options>
             <S.ButtonContainer option="Login" isActive={option === 'Login' ? true : false} >
               <S.Button  onPress={() =>  setOption('Login')}>
-                <S.ButtonText isActive={option === 'Login' ? true : false}>Login</S.ButtonText>
+                <S.ButtonText isActive={option === 'Login' ? true : false}>Sign In</S.ButtonText>
               </S.Button>
             </S.ButtonContainer>
 
             <S.ButtonContainer option="Register" isActive={option === 'Register' ? true : false} >
-              <S.Button  onPress={() =>  setOption('Register')}>
-                <S.ButtonText isActive={option === 'Register' ? true : false}>Register</S.ButtonText>
+              <S.Button onPress={() =>  setOption('Register')}>
+                <S.ButtonText isActive={option === 'Register' ? true : false}>Sign Up</S.ButtonText>
               </S.Button>
             </S.ButtonContainer>
           </S.Options>
@@ -113,6 +113,10 @@ const Register = () => {
       if(user)
         user.sendEmailVerification();
 
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+          
       alert('User created, please check your email for confirmation');
       
     } catch(error) {
@@ -162,7 +166,7 @@ const Register = () => {
 
       <S.ConfirmButton onPress={handleRegister}>
         <S.ConfirmButtonText>
-          Register
+          Sign Up
         </S.ConfirmButtonText>
       </S.ConfirmButton>
     </>
@@ -268,7 +272,7 @@ const Login = () => {
       <S.Input
         placeholderTextColor="black"
         secureTextEntry={true}
-        placeholder="Senha"
+        placeholder="Password"
         value={password}
         onChangeText={(password) => setPassword(password) }
         error={passwordError}
@@ -277,7 +281,7 @@ const Login = () => {
 
       <S.ConfirmButton onPress={handleLogin}>
         <S.ConfirmButtonText>
-          Login
+          Sign In
         </S.ConfirmButtonText>
       </S.ConfirmButton>
     </>
